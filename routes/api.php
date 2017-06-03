@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['namespace' => 'Api'], function () {
+    // Post
+    Route::get('/posts', 'PostController@all');
+    Route::get('/posts/{slug}', 'PostController@getBySlug');
+    Route::post('/posts/{id}/likes', 'PostController@like');
 });
