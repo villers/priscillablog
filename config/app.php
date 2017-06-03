@@ -182,6 +182,12 @@ return [
          */
         Recca0120\LaravelTracy\LaravelTracyServiceProvider::class,
 
+        /*
+         * Application Providers
+         */
+        App\Providers\Setting\SettingServiceProvider::class,
+
+
     ],
 
     /*
@@ -230,7 +236,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Setting' => App\Providers\Setting\Facade\Setting::class,
     ],
 
 ];
