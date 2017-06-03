@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\CategoryRepository;
+use App\Repositories\PostRepository;
+use App\Repositories\TagRepository;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -31,5 +34,15 @@ class Controller extends BaseController
         $this->post = $post;
         $this->category = $category;
         $this->tag = $tag;
+    }
+
+    /**
+     * Blog index
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index()
+    {
+        return view('blog.index');
     }
 }
