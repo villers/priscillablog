@@ -12,4 +12,4 @@
 */
 
 Route::get('/', 'Controller@index');
-
+Route::any('/{any}', 'Controller@index')->where('any', '.*');

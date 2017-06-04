@@ -11,4 +11,6 @@ const { mix } = require('laravel-mix');
  |
  */
 
-mix.react('resources/assets/js/bootstrap.js', 'public/js');
+mix.react('resources/assets/js/bootstrap.js', 'public/js')
+    .sourceMaps()
+    .sass('resources/assets/scss/style.scss', 'public/css');
