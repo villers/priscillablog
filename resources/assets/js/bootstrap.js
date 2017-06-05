@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { createBrowserHistory } from 'history';
-import { connectRouter } from 'connected-react-router';
+import { ConnectedRouter } from 'connected-react-router';
 import { Provider } from 'react-redux';
 import Perf from 'react-addons-perf';
 import { whyDidYouUpdate } from "why-did-you-update";
@@ -10,7 +10,7 @@ import { whyDidYouUpdate } from "why-did-you-update";
 
 import { configureClient, configureStore } from './configure';
 import reducer from './reducers';
-import App from './App';
+import routes from './routes';
 
 if (process.env.NODE_ENV === 'production') {
     console.log('prod');
@@ -43,7 +43,9 @@ config();
 ReactDOM.render(
     <AppContainer>
         <Provider store={store}>
-            <App history={history} />
+            <ConnectedRouter history={history}>
+                { routes }
+            </ConnectedRouter>
         </Provider>
     </AppContainer>,
     document.querySelector('#app')
