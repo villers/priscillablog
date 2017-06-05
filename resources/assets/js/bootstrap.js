@@ -1,15 +1,25 @@
-import 'materialize-css';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { createBrowserHistory } from 'history';
 import { connectRouter } from 'connected-react-router';
 import { Provider } from 'react-redux';
+import Perf from 'react-addons-perf';
+import { whyDidYouUpdate } from "why-did-you-update";
+
 
 import { configureClient, configureStore } from './configure';
 import reducer from './reducers';
 import App from './App';
+
+if (process.env.NODE_ENV === 'production') {
+    console.log('prod');
+} else if (process.env.NODE_ENV === 'development') {
+    console.log('dev');
+    require("react-hot-loader/patch");
+    window.Perf = Perf;
+    whyDidYouUpdate(React);
+}
 
 const history = createBrowserHistory();
 const client = configureClient('/api');
@@ -30,28 +40,15 @@ const config = () => {
 config();
 
 
-const render = () => {
-    ReactDOM.render(
-        <AppContainer>
-            <Provider store={store}>
-                <App history={history} />
-            </Provider>
-        </AppContainer>,
-        document.querySelector('.container')
-    )
-};
+ReactDOM.render(
+    <AppContainer>
+        <Provider store={store}>
+            <App history={history} />
+        </Provider>
+    </AppContainer>,
+    document.querySelector('#app')
+);
 
-render();
-
-// Hot reloading
 if (module.hot) {
-    // Reload components
-    module.hot.accept('./App', () => {
-        render();
-    });
-
-    // Reload reducers
-    module.hot.accept('./reducers', () => {
-        store.replaceReducer(connectRouter(history)(reducer));
-    })
+    module.hot.accept();
 }

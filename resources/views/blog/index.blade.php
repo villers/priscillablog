@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="{{ mix('/css/style.css') }}">
     </head>
     <body>
-        <div class="container"></div>
+        <div id="app"></div>
         <script src="{{ mix('js/bootstrap.js') }}"></script>
     </body>
 </html>
