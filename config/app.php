@@ -178,11 +178,6 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         /*
-         * Custom Package Providers
-         */
-        Recca0120\LaravelTracy\LaravelTracyServiceProvider::class,
-
-        /*
          * Application Providers
          */
         App\Providers\Setting\SettingServiceProvider::class,
