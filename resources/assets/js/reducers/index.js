@@ -3,8 +3,8 @@ import { reducer as form } from 'redux-form';
 import posts from './posts';
 
 const reducer = combineReducers({
-    form,
-    posts,
+  form,
+  posts,
 });
 
 export default reducer;
