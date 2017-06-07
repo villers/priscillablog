@@ -1,2 +1,10 @@
 @import "~semantic-ui-sass/semantic-ui.scss";
 
+body {
+    background: url('../images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.container {
+    background-color: whitesmoke;
+}
