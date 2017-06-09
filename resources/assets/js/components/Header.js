@@ -1,19 +1,15 @@
 import React from 'react';
-import { Header as SHeader, Icon } from 'semantic-ui-react';
-import { NavLink } from 'react-router-dom';
+import { Container, Segment } from 'semantic-ui-react';
+import Navigation from './Navigation';
+
+const color = 'pink';
 
 const HeaderComponent = () => (
-  <SHeader as="h2" icon textAlign="center">
-    <NavLink to="/" style={{ color: 'white' }}>
-      <Icon name="like" circular />
-    </NavLink>
-    <SHeader.Content>
-      <NavLink to="/" style={{ color: 'white' }}>
-        Priscilla
-      </NavLink>
-    </SHeader.Content>
-    <SHeader.Subheader />
-  </SHeader>
+  <Segment vertical textAlign="center" className="segment__header" color={color}>
+    <Container>
+      <Navigation />
+    </Container>
+  </Segment>
 );
 
 export default HeaderComponent;

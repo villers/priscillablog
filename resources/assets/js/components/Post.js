@@ -6,7 +6,6 @@ import {
   Card,
   Icon,
   Menu,
-  Divider,
   Button,
   Embed,
   Popup,
@@ -124,7 +123,6 @@ export default class PostComponent extends PureComponent {
             </Menu.Menu>
           </Menu>
         </Card.Content>
-        <Divider fitted />
       </Card>
 
     );

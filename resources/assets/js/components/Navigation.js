@@ -1,23 +1,15 @@
 import React from 'react';
-import { Menu, Search } from 'semantic-ui-react';
-import { NavLink } from 'react-router-dom';
+import { Button, Dropdown, Menu, Search } from 'semantic-ui-react';
 
+const color = 'pink';
 
-// - Feilds
-const color = 'teal';
-
-// - Create Navigation component class
 export default class NavigationComponent extends React.PureComponent {
-
-  // Counstructor
   constructor(props) {
     super(props);
 
-    // Binding functions to `this`
     this.handleItemClick = this.handleItemClick.bind(this);
-
     this.state = {
-      activeItem: 'home',
+      activeItem: 'Accueil',
     };
   }
 
@@ -25,18 +17,26 @@ export default class NavigationComponent extends React.PureComponent {
     this.setState({ activeItem: name });
   }
 
-  // Render DOM
   render() {
     const { activeItem } = this.state;
 
     return (
-      <Menu color={color} stackable fluid>
-        <Menu.Item header>Priscilla</Menu.Item>
+      <Menu size="tiny" color={color} stackable fluid borderless inverted >
+        <Menu.Item name="accueil" content="Accueil" active={activeItem === 'Accueil'} onClick={this.handleItemClick} />
+        <Menu.Item name="generalite" content="Généralité" active={activeItem === 'generalite'} onClick={this.handleItemClick} />
+
         <Menu.Menu position="right">
-          <Menu.Item as="div" icon="newspaper" name="Blog" active={activeItem === 'home'} onClick={this.handleItemClick} />
-          <Menu.Item as="div" name="logout" active={activeItem === 'Logout'} onClick={this.handleItemClick}>
-            <NavLink className="ui blue button" to="/login">LOGIN</NavLink>
+          <Dropdown item text="Langue">
+            <Dropdown.Menu>
+              <Dropdown.Item>Français</Dropdown.Item>
+              <Dropdown.Item>Anglais</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+
+          <Menu.Item>
+            <Button primary>S'inscrire</Button>
           </Menu.Item>
+
           <Menu.Item>
             <Search />
           </Menu.Item>

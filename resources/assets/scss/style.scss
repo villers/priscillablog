@@ -1,10 +1,24 @@
 @import "~semantic-ui-sass/semantic-ui.scss";
 
 body {
-    background: url('../images/background.jpg') no-repeat center center fixed;
-    background-size: cover;
+    //background: url('../images/background.jpg') no-repeat center center fixed;
+    //background-size: cover;
+    background-color: #ececec;
+}
+
+.segment__header, .container {
+    background-color: #fefefe !important;
 }
 
 .container {
-    background-color: whitesmoke;
+    border-radius: 0.28571429rem;
+    border-bottom: 1px solid rgba(34, 36, 38, 0.15);
+}
+
+.brand {
+    padding: 1rem 0;
+}
+
+h2.ui.header {
+    color: #e03997;
 }

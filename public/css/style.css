@@ -36921,3 +36921,12 @@ html.ios {
          Site Overrides
 *******************************/
 
+body {
+  background: url(/images/background.jpg?a032ec3f7c4392138773b122b640f40b) no-repeat center center fixed;
+  background-size: cover;
+}
+
+.container {
+  background-color: whitesmoke;
+}
+
