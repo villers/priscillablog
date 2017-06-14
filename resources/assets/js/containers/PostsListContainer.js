@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Grid } from 'semantic-ui-react';
 
+
 import { loadPosts } from '../actions/posts';
 import Post from '../components/Post';
 
-class PostsList extends React.Component {
+class PostsListContainer extends React.PureComponent {
   componentWillMount() {
     this.props.fetch();
   }
@@ -18,7 +19,7 @@ class PostsList extends React.Component {
         <Post
           body={post.summary}
           commentCounter={post.comment_count}
-          creationDate={post.created_at}
+          created_at={post.created_at}
           key={post.id}
           id={post.id}
           image={'http://lorempixel.com/400/400/animals/'}
@@ -59,14 +60,14 @@ class PostsList extends React.Component {
   }
 }
 
-PostsList.defaultProps = {
+PostsListContainer.defaultProps = {
   error: null,
   posts: [],
 };
 
-PostsList.propTypes = {
+PostsListContainer.propTypes = {
   fetch: PropTypes.func.isRequired,
-  posts: PropTypes.arrayOf(PropTypes.object),
+  posts: PropTypes.shape({}).isRequired,
   loading: PropTypes.bool.isRequired,
   error: PropTypes.bool,
 };
@@ -81,4 +82,4 @@ const mapDispatchToProps = dispatch => ({
   fetch: () => dispatch(loadPosts()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostsList);
+export default connect(mapStateToProps, mapDispatchToProps)(PostsListContainer);

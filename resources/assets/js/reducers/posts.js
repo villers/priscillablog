@@ -1,7 +1,7 @@
 import { LOAD_POSTS, LOAD_POSTS_FAILURE, LOAD_POSTS_SUCCESS } from '../actions/posts';
 
 const INIT_STATE = {
-  posts: [],
+  posts: {},
   error: null,
   loading: false,
 };
@@ -11,7 +11,7 @@ const posts = (state = INIT_STATE, action) => {
     case LOAD_POSTS:
       return {
         ...state,
-        posts: [],
+        posts: {},
         error: null,
         loading: true,
       };

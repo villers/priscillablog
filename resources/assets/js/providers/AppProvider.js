@@ -2,17 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-class App extends React.PureComponent {
+class AppProvider extends React.PureComponent {
   render() {
-    return (
-      <div>
-        {this.props.children}
-      </div>
-    );
+    return React.Children.only(this.props.children);
   }
 }
 
-App.propTypes = {
+AppProvider.propTypes = {
   children: PropTypes.element.isRequired,
 };
 
@@ -24,4 +20,4 @@ const mapDispatchToProps = () => ({
 
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(AppProvider);

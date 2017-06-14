@@ -136,7 +136,7 @@ PostComponent.defaultProps = {
 PostComponent.propTypes = {
   body: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
-  pictureState: PropTypes.boolean,
+  pictureState: PropTypes.bool.isRequired,
   created_at: PropTypes.string.isRequired,
   score: PropTypes.number.isRequired,
   commentCounter: PropTypes.number.isRequired,

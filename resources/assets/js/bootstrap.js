@@ -5,15 +5,16 @@ import ReactDOM from 'react-dom';
 import { createBrowserHistory } from 'history';
 import { ConnectedRouter } from 'connected-react-router';
 import { Provider } from 'react-redux';
-import { whyDidYouUpdate } from 'why-did-you-update';
+// import { whyDidYouUpdate } from 'why-did-you-update';
 
 import { configureClient, configureStore } from './configure';
 import reducer from './reducers';
 import routes from './routes';
+import AppProvider from './providers/AppProvider';
 
-if (process.env.NODE_ENV === 'development') {
-  whyDidYouUpdate(React);
-}
+// if (process.env.NODE_ENV === 'development') {
+//   whyDidYouUpdate(React);
+// }
 
 const history = createBrowserHistory();
 const client = configureClient('/api');
@@ -40,9 +41,11 @@ config();
 ReactDOM.render(
   <AppContainer>
     <Provider store={store}>
-      <ConnectedRouter history={history}>
-        { routes }
-      </ConnectedRouter>
+      <AppProvider>
+        <ConnectedRouter history={history}>
+          { routes }
+        </ConnectedRouter>
+      </AppProvider>
     </Provider>
   </AppContainer>,
   document.querySelector('#app'),

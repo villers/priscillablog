@@ -1,9 +1,17 @@
 import React from 'react';
-import PostsList from '../containers/PostsListContainer';
+import { Container, Divider } from 'semantic-ui-react';
+import Header from '../components/Header';
+import Brand from '../components/Brand';
+import PostsListContainer from '../containers/PostsListContainer';
 
 const PostsIndex = () => (
   <div>
-    <PostsList />
+    <Header />
+    <Divider hidden />
+    <Container>
+      <Brand />
+      <PostsListContainer />
+    </Container>
   </div>
 );
 
