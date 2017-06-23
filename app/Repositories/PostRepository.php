@@ -19,13 +19,15 @@ class PostRepository
      * @param boolean $manage
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function all($limit = 8, $manage = false)
+    public function all($limit = 6, $manage = false)
     {
         $prepare = Post::orderBy('created_at', 'desc');
         if ($manage) {
             $prepare->manage();
         } else {
-            $prepare->list()->with('tags');
+            //$prepare->list()->with('tags');
+            $prepare->with('category', 'tags');
+
         }
 
         return $prepare->paginate((int)$limit)->toArray();

@@ -1,35 +1,55 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Grid } from 'semantic-ui-react';
-
-
+import { Card, Container, Grid, Icon } from 'semantic-ui-react';
+import { NavLink } from 'react-router-dom';
 import { loadPosts } from '../actions/posts';
-import Post from '../components/Post';
 
 class PostsListContainer extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.onClick = this.onClick.bind(this);
+  }
+
   componentWillMount() {
     this.props.fetch();
   }
 
+  onClick() {
+    console.log('clicked');
+  }
+
   renderPosts() {
     const { posts } = this.props;
+
     return posts.data && posts.data.map(post => (
-      <Grid.Column key={post.id}>
-        <Post
-          body={post.summary}
-          commentCounter={post.comment_count}
-          created_at={post.created_at}
-          key={post.id}
-          id={post.id}
-          image={'http://lorempixel.com/400/400/animals/'}
-          lastEditDate={post.updated_at}
-          score={post.favorite_count}
-          tags={post.tags}
-          viewCount={post.view_count}
-          pictureState
-        />
-      </Grid.Column>
+      <Card
+        key={post.id}
+        image="http://lorempicsum.com/futurama/350/200/1"
+        header={post.title}
+        meta={
+          post.created_at
+        }
+        description={post.summary}
+        onClick={this.onClick}
+        as={'div'}
+        link
+        extra={
+          <Grid>
+            <Grid.Row columns={2}>
+              <Grid.Column>
+                <NavLink to="/">
+                  <Icon name="comment outline" />
+                  {post.comment_count}
+                </NavLink>
+              </Grid.Column>
+              <Grid.Column textAlign="right">
+                <NavLink to="/">{post.category.name}</NavLink>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        }
+      />
     ));
   }
 
@@ -41,21 +61,13 @@ class PostsListContainer extends React.PureComponent {
     } else if (error) {
       return <div className="alert alert-danger">Error: {error.message}</div>;
     }
+
     return (
-      <Grid stackable divided padded columns={2}>
-        <Grid.Row>
-          <Grid.Column computer={12} mobile={16} tablet={11}>
-            <Grid doubling columns={3}>
-              {this.renderPosts()}
-            </Grid>
-          </Grid.Column>
-          <Grid.Column computer={4} mobile={16} tablet={5}>
-            <div>right col1</div>
-            <div>right col2</div>
-            <div>right col3</div>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
+      <Container>
+        <Card.Group itemsPerRow={3}>
+          {this.renderPosts()}
+        </Card.Group>
+      </Container>
     );
   }
 }
