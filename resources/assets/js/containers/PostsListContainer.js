@@ -25,7 +25,7 @@ class PostsListContainer extends React.PureComponent {
     return posts.data && posts.data.map(post => (
       <Card
         key={post.id}
-        image="http://lorempicsum.com/futurama/350/200/1"
+        image={post.image}
         header={post.title}
         meta={
           post.created_at

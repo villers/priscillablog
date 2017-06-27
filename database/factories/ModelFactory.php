@@ -32,7 +32,7 @@ $factory->define(App\Models\Post::class, function (Faker\Generator $faker) {
         'slug' => $faker->slug,
         'summary' => $faker->sentence(20),
         'body' => "<p>$body</p>",
-        'origin' => $body,
+        'image' => $faker->imageUrl(),
         'comment_count' => 2,
         'view_count' => $faker->randomDigitNotNull,
         'favorite_count' => $faker->randomDigitNotNull,
@@ -60,5 +60,13 @@ $factory->define(App\Models\Link::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'link' => $faker->url,
+    ];
+});
+
+$factory->define(App\Models\User::class, function (Faker\Generator $faker) {
+    return [
+        'name' => 'admin',
+        'email' => 'admin@admin.com',
+        'password' => bcrypt('password'),
     ];
 });

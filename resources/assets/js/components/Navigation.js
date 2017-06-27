@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Container, Dropdown, Menu, Search } from 'semantic-ui-react';
+import { NavLink } from 'react-router-dom';
 
 const color = 'pink';
 
@@ -46,7 +47,9 @@ export default class NavigationComponent extends React.PureComponent {
             </Dropdown>
 
             <Menu.Item>
-              <Button primary>{"S'inscrire"}</Button>
+              <a href="/admin">
+                <Button primary>Administration</Button>
+              </a>
             </Menu.Item>
 
             <Menu.Item>

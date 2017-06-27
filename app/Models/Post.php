@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Backpack\CRUD\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -12,6 +13,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Post extends Model
 {
     use SoftDeletes;
+    use CrudTrait;
+
+    /**
+     * @var bool
+     */
+    public $timestamps = true;
 
     /**
      * @var string
@@ -21,7 +28,7 @@ class Post extends Model
     /**
      * @var array
      */
-    protected $fillable = ['title', 'slug', 'summary', 'origin', 'body', 'category_id', 'published'];
+    protected $fillable = ['title', 'slug', 'summary', 'image', 'origin', 'body', 'category_id', 'published'];
 
     /**
      * @var array
@@ -90,5 +97,19 @@ class Post extends Model
     public function scopeManage($query)
     {
         return $query->select('id', 'slug', 'title', 'published', 'created_at');
+    }
+
+    /**
+     *The slug is created automatically from the "name" field if no slug exists.
+     *
+     * @return string
+     */
+    public function getSlugOrTitleAttribute()
+    {
+        if ($this->slug != '') {
+            return $this->slug;
+        }
+
+        return $this->title;
     }
 }

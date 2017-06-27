@@ -12,4 +12,8 @@
 */
 
 Route::get('/', 'Controller@index');
-Route::any('/{any}', 'Controller@index')->where('any', '.*');
+
+Route::group(['prefix' => config('backpack.base.route_prefix', 'admin'), 'middleware' => ['auth'], 'namespace' => 'Admin'], function () {
+    // Backpack\NewsCRUD
+    CRUD::resource('post', 'PostCrudController');
+});

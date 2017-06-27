@@ -20,7 +20,7 @@ class CreatePostsTable extends Migration
             $table->string('summary');
             $table->integer('category_id')->unsigned();
             $table->text('body');
-            $table->text('origin');
+            $table->string('image')->nullable();
             $table->integer('comment_count')->default(0);
             $table->integer('view_count')->default(0);
             $table->integer('favorite_count')->default(0);
