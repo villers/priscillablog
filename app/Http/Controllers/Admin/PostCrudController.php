@@ -22,7 +22,7 @@ class PostCrudController extends CrudController
 		|--------------------------------------------------------------------------
 		*/
         $this->crud->setModel("App\Models\Post");
-        $this->crud->setRoute("admin/post");
+        $this->crud->setRoute(config('backpack.base.route_prefix', 'admin').'/post');
         $this->crud->setEntityNameStrings('post', 'posts');
 
         /*
@@ -60,9 +60,9 @@ class PostCrudController extends CrudController
 
         $this->crud->addField([
             'name' => 'slug',
-            'label' => "Slug (URL)",
+            'label' => 'Slug (URL)',
             'type' => 'text',
-            'hint' => 'Will be automatically generated from your title, if left empty.'
+            'hint' => 'Will be automatically generated from your title, if left empty.',
         ]);
 
         $this->crud->addField([

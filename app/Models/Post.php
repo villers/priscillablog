@@ -5,6 +5,8 @@ namespace App\Models;
 use Backpack\CRUD\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 
 /**
  * Class Post
@@ -14,6 +16,8 @@ class Post extends Model
 {
     use SoftDeletes;
     use CrudTrait;
+    use Sluggable;
+    use SluggableScopeHelpers;
 
     /**
      * @var bool
@@ -97,6 +101,20 @@ class Post extends Model
     public function scopeManage($query)
     {
         return $query->select('id', 'slug', 'title', 'published', 'created_at');
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'slug_or_title',
+            ],
+        ];
     }
 
     /**
