@@ -10,7 +10,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Http\Requests\CategoryRequest as StoreRequest;
 use App\Http\Requests\CategoryRequest as UpdateRequest;
 
-class CategoryCrudController extends CrudController
+class TagCrudController extends CrudController
 {
     public function __construct() {
 
@@ -21,9 +21,9 @@ class CategoryCrudController extends CrudController
 		| BASIC CRUD INFORMATION
 		|--------------------------------------------------------------------------
 		*/
-        $this->crud->setModel("App\Models\Category");
-        $this->crud->setRoute(config('backpack.base.route_prefix', 'admin').'/category');
-        $this->crud->setEntityNameStrings('category', 'categories');
+        $this->crud->setModel("App\Models\Tag");
+        $this->crud->setRoute(config('backpack.base.route_prefix', 'admin').'/tag');
+        $this->crud->setEntityNameStrings('tag', 'tags');
 
         /*
 		|--------------------------------------------------------------------------

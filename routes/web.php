@@ -17,4 +17,5 @@ Route::group(['prefix' => config('backpack.base.route_prefix', 'admin'), 'middle
     // Backpack\NewsCRUD
     CRUD::resource('post', 'PostCrudController');
     CRUD::resource('category', 'CategoryCrudController');
+    CRUD::resource('tag', 'TagCrudController');
 });
