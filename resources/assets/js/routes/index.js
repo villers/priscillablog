@@ -5,7 +5,8 @@ import PostsIndex from '../pages/PostsIndex';
 
 const routes = (
   <Switch>
-    <Route path="/" component={PostsIndex} />
+    <Route exact path="/" component={PostsIndex} />
+    <Route path="/page/:page" component={PostsIndex} />
   </Switch>
 );
 

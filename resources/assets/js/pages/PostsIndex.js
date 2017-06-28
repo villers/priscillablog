@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Divider } from 'semantic-ui-react';
 import { StickyContainer, Sticky } from 'react-sticky';
 
@@ -7,7 +8,7 @@ import PostsListContainer from '../containers/PostsListContainer';
 import Navigation from '../components/Navigation';
 
 
-const PostsIndex = () => (
+const PostsIndex = ({ match }) => (
   <div>
     <Header />
     <StickyContainer>
@@ -25,8 +26,16 @@ const PostsIndex = () => (
       </Sticky>
     </StickyContainer>
     <Divider hidden />
-    <PostsListContainer />
+    <PostsListContainer page={match.params.page} />
   </div>
 );
+
+PostsIndex.defaultProps = {
+  match: {},
+};
+
+PostsIndex.propTypes = {
+  match: PropTypes.shape({}),
+};
 
 export default PostsIndex;

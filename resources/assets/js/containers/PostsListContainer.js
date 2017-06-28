@@ -3,16 +3,22 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Card, Container, Grid, Icon } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
+import { push } from 'react-router-redux';
+
 import { loadPosts } from '../actions/posts';
+import Paginate from '../components/Paginate';
 
 class PostsListContainer extends React.PureComponent {
   constructor(props) {
     super(props);
     this.onClick = this.onClick.bind(this);
+    this.paginateClick = this.paginateClick.bind(this);
   }
 
   componentWillMount() {
-    this.props.fetch();
+    const { fetch, page } = this.props;
+
+    fetch(page);
   }
 
   onClick() {
@@ -53,6 +59,25 @@ class PostsListContainer extends React.PureComponent {
     ));
   }
 
+  paginateClick(page) {
+    const { fetch, moveTo } = this.props;
+
+    moveTo(`/page/${page}`);
+    fetch(page);
+  }
+
+  renderPaginate() {
+    const { posts } = this.props;
+
+    return posts.current_page && posts.last_page && (
+      <Paginate
+        currPage={posts.current_page}
+        lastPage={posts.last_page}
+        onChange={this.paginateClick}
+      />
+    );
+  }
+
   render() {
     const { loading, error } = this.props;
 
@@ -64,9 +89,12 @@ class PostsListContainer extends React.PureComponent {
 
     return (
       <Container>
+
         <Card.Group itemsPerRow={3}>
           {this.renderPosts()}
         </Card.Group>
+
+        {this.renderPaginate()}
       </Container>
     );
   }
@@ -75,12 +103,15 @@ class PostsListContainer extends React.PureComponent {
 PostsListContainer.defaultProps = {
   error: null,
   posts: [],
+  page: '1',
 };
 
 PostsListContainer.propTypes = {
   fetch: PropTypes.func.isRequired,
+  moveTo: PropTypes.func.isRequired,
   posts: PropTypes.shape({}).isRequired,
   loading: PropTypes.bool.isRequired,
+  page: PropTypes.string,
   error: PropTypes.bool,
 };
 
@@ -91,7 +122,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetch: () => dispatch(loadPosts()),
+  fetch: page => dispatch(loadPosts(page)),
+  moveTo: url => dispatch(push(url)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostsListContainer);

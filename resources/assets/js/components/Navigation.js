@@ -11,7 +11,7 @@ export default class NavigationComponent extends React.PureComponent {
 
     this.handleItemClick = this.handleItemClick.bind(this);
     this.state = {
-      activeItem: 'Accueil',
+      activeItem: 'accueil',
     };
   }
 
@@ -35,17 +35,10 @@ export default class NavigationComponent extends React.PureComponent {
         style={style}
       >
         <Container>
-          <Menu.Item name="accueil" content="Accueil" active={activeItem === 'Accueil'} onClick={this.handleItemClick} />
+          <Menu.Item name="accueil" content="Accueil" active={activeItem === 'accueil'} onClick={this.handleItemClick} />
           <Menu.Item name="generalite" content="Généralité" active={activeItem === 'generalite'} onClick={this.handleItemClick} />
 
           <Menu.Menu position="right">
-            <Dropdown item text="Langue">
-              <Dropdown.Menu>
-                <Dropdown.Item>Français</Dropdown.Item>
-                <Dropdown.Item>Anglais</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-
             <Menu.Item>
               <a href="/admin">
                 <Button primary>Administration</Button>
