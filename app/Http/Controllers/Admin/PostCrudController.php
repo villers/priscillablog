@@ -24,6 +24,7 @@ class PostCrudController extends CrudController
         $this->crud->setModel("App\Models\Post");
         $this->crud->setRoute(config('backpack.base.route_prefix', 'admin').'/post');
         $this->crud->setEntityNameStrings('post', 'posts');
+        $this->crud->orderBy('created_at','desc');
 
         /*
 		|--------------------------------------------------------------------------

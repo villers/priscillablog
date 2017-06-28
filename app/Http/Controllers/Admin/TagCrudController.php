@@ -24,6 +24,7 @@ class TagCrudController extends CrudController
         $this->crud->setModel("App\Models\Tag");
         $this->crud->setRoute(config('backpack.base.route_prefix', 'admin').'/tag');
         $this->crud->setEntityNameStrings('tag', 'tags');
+        $this->crud->orderBy('created_at','desc');
 
         /*
 		|--------------------------------------------------------------------------
