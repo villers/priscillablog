@@ -6,6 +6,10 @@ import { Grid, Menu } from 'semantic-ui-react';
 const color = 'pink';
 
 export default class Paginate extends React.PureComponent {
+  static renderDots(key) {
+    return <Menu.Item key={key} disabled>...</Menu.Item>;
+  }
+
   constructor(props) {
     super(props);
 
@@ -74,10 +78,6 @@ export default class Paginate extends React.PureComponent {
     );
   }
 
-  renderDots(key) {
-    return <Menu.Item key={key} disabled>...</Menu.Item>;
-  }
-
   renderNumber(num) {
     const { currPage } = this.props;
 
@@ -105,7 +105,7 @@ export default class Paginate extends React.PureComponent {
   renderStart() {
     const pages = this.renderRange(1, 2);
 
-    pages.push(this.renderDots('dots-start'));
+    pages.push(Paginate.renderDots('dots-start'));
 
     return pages;
   }
@@ -114,7 +114,7 @@ export default class Paginate extends React.PureComponent {
     const { lastPage } = this.props;
     const pages = this.renderRange(lastPage - 1, lastPage);
 
-    pages.unshift(this.renderDots('dots-finish'));
+    pages.unshift(Paginate.renderDots('dots-finish'));
 
     return pages;
   }
