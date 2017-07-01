@@ -5,35 +5,22 @@ import { Card, Container, Dimmer, Grid, Icon, Loader, Message } from 'semantic-u
 import { NavLink } from 'react-router-dom';
 import { push } from 'react-router-redux';
 
-import { loadPosts } from '../actions/posts';
-import Paginate from '../components/Paginate';
 import Layout from '../components/Layout';
+import { loadPost } from '../actions/post';
 
-class PostsListContainer extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.paginateClick = this.paginateClick.bind(this);
-  }
-
+class PostDetailContainer extends React.PureComponent {
   componentWillMount() {
     const { fetch } = this.props;
 
-    const page = this.context.router.route.match.params.page || 1;
+    const slug = this.context.router.route.match.params.slug;
 
-    fetch(page);
+    fetch(slug);
   }
 
-  paginateClick(page) {
-    const { fetch, moveTo } = this.props;
+  renderPost() {
+    const { post } = this.props;
 
-    moveTo(`/blog/page/${page}`);
-    fetch(page);
-  }
-
-  renderPosts() {
-    const { posts, moveTo } = this.props;
-
-    return posts.data && posts.data.map(post => (
+    return post && (
       <Card
         key={post.id}
         image={post.image}
@@ -41,10 +28,10 @@ class PostsListContainer extends React.PureComponent {
         meta={
           post.created_at
         }
-        description={post.summary}
-        onClick={() => moveTo(`/blog/${post.slug}`)}
+        description={post.body}
         as={'div'}
         link
+        fluid
         extra={
           <Grid>
             <Grid.Row columns={2}>
@@ -60,18 +47,6 @@ class PostsListContainer extends React.PureComponent {
             </Grid.Row>
           </Grid>
         }
-      />
-    ));
-  }
-
-  renderPaginate() {
-    const { posts } = this.props;
-
-    return posts.current_page && posts.last_page && (
-      <Paginate
-        currPage={posts.current_page}
-        lastPage={posts.last_page}
-        onChange={this.paginateClick}
       />
     );
   }
@@ -99,43 +74,38 @@ class PostsListContainer extends React.PureComponent {
 
           {error && this.renderError()}
 
-          <Card.Group itemsPerRow={3}>
-            {this.renderPosts()}
-          </Card.Group>
-
-          {this.renderPaginate()}
+          {this.renderPost()}
         </Container>
       </Layout>
     );
   }
 }
 
-PostsListContainer.defaultProps = {
+PostDetailContainer.defaultProps = {
   error: null,
-  posts: [],
+  post: null,
 };
 
-PostsListContainer.propTypes = {
+PostDetailContainer.propTypes = {
   fetch: PropTypes.func.isRequired,
-  moveTo: PropTypes.func.isRequired,
-  posts: PropTypes.shape({}).isRequired,
+  post: PropTypes.shape({}),
   loading: PropTypes.bool.isRequired,
   error: PropTypes.bool,
 };
 
-PostsListContainer.contextTypes = {
+PostDetailContainer.contextTypes = {
   router: PropTypes.object,
 };
 
 const mapStateToProps = state => ({
-  posts: state.posts.posts,
-  loading: state.posts.loading,
-  error: state.posts.error,
+  post: state.post.post,
+  loading: state.post.loading,
+  error: state.post.error,
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetch: page => dispatch(loadPosts(page)),
+  fetch: slug => dispatch(loadPost(slug)),
   moveTo: url => dispatch(push(url)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostsListContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(PostDetailContainer);

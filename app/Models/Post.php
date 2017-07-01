@@ -77,9 +77,9 @@ class Post extends Model
     public function scopeShow($query)
     {
         return $query->select([
-            'id', 'slug', 'title', 'body', 'category_id',
+            'id', 'slug', 'title', 'body', 'image','category_id',
             'comment_count', 'view_count', 'favorite_count', 'created_at'
-        ])->wherePublished(1);
+        ]);
     }
 
     /**
@@ -89,18 +89,9 @@ class Post extends Model
     public function scopeList($query)
     {
         return $query->select([
-            'id', 'slug', 'title', 'summary',
+            'id', 'slug', 'title', 'summary', 'image',
             'comment_count', 'view_count', 'favorite_count', 'created_at'
-        ])->wherePublished(1);
-    }
-
-    /**
-     * @param $query
-     * @return mixed
-     */
-    public function scopeManage($query)
-    {
-        return $query->select('id', 'slug', 'title', 'published', 'created_at');
+        ]);
     }
 
     /**

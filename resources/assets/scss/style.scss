@@ -29,6 +29,11 @@ h2.ui.header {
     .image {
         height: 200px;
     }
+    &.fluid {
+        .image {
+            height: auto;
+        }
+    }
     .content {
         .header {
             color: #E03997!important;

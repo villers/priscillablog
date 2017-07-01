@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { Grid, Menu } from 'semantic-ui-react';
 
-
 const color = 'pink';
 
 export default class Paginate extends React.PureComponent {

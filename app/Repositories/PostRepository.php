@@ -36,6 +36,7 @@ class PostRepository
     public function getByColumn($column, $value)
     {
         $post = Post::where($column, $value)
+            ->where('published', true)
             ->show()
             ->with(['tags', 'category'])
             ->first();

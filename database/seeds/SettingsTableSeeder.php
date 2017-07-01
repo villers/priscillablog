@@ -54,7 +54,7 @@ class SettingsTableSeeder extends Seeder
             'key'           => 'post_per_page',
             'name'          => 'Posts par page',
             'description'   => 'Nombre de posts par page',
-            'value'         => '8',
+            'value'         => '9',
             'field'         => '{"name":"value","label":"Value" ,"type":"number"}',
             'active'        => 1,
         ]);
