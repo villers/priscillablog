@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: mickaelvillers
- * Date: 03/06/2017
- * Time: 21:54
- */
 
 // Restful api response http code.
 define('REST_GET_SUCCESS', 200);

@@ -34,18 +34,23 @@ class PostCrudController extends CrudController
 
         // ------ CRUD COLUMNS
         $this->crud->addColumn([
+            'label' => "Titre",
             'name' => 'title',
-            'label' => "Title"
         ]);
         $this->crud->addColumn([
+            'label' => 'Date de création',
             'name' => 'created_at',
-            'label' => 'Date',
             'type' => 'date'
         ]);
         $this->crud->addColumn([
-            'label' => "Category",
-            'type' => 'select',
+            'label' => 'Publié',
+            'name' => 'published',
+            'type' => 'checkbox'
+        ]);
+        $this->crud->addColumn([
+            'label' => "Categorie",
             'name' => 'category_id',
+            'type' => 'select',
             'entity' => 'category',
             'attribute' => 'name',
             'model' => "App\Models\Category"
@@ -53,47 +58,47 @@ class PostCrudController extends CrudController
 
         // ------ CRUD FIELDS
         $this->crud->addField([    // TEXT
+            'label' => 'Titre',
             'name' => 'title',
-            'label' => 'Title',
             'type' => 'text',
             'placeholder' => 'Your title here'
         ]);
 
         $this->crud->addField([
-            'name' => 'slug',
             'label' => 'Slug (URL)',
+            'name' => 'slug',
             'type' => 'text',
             'hint' => 'Will be automatically generated from your title, if left empty.',
         ]);
 
         $this->crud->addField([
+            'label' => 'Date de créatio',
             'name' => 'created_at',
-            'label' => 'Created',
             'type' => 'date',
             'value' => date('Y-m-d')
         ]);
 
         $this->crud->addField([    // WYSIWYG
+            'label' => 'Résumé',
             'name' => 'summary',
-            'label' => 'Summary',
             'type' => 'text',
             'placeholder' => 'Your summary text here'
         ]);
 
         $this->crud->addField([    // WYSIWYG
+            'label' => 'Article',
             'name' => 'body',
-            'label' => 'Body',
             'type' => 'ckeditor',
             'placeholder' => 'Your textarea text here'
         ]);
 
         $this->crud->addField([    // Image
-            'name' => 'image',
             'label' => 'Image',
+            'name' => 'image',
             'type' => 'browse'
         ]);
         $this->crud->addField([    // SELECT
-            'label' => "Category",
+            'label' => "Categorie",
             'type' => 'select2',
             'name' => 'category_id',
             'entity' => 'category',
@@ -111,8 +116,8 @@ class PostCrudController extends CrudController
         ]);
 
         $this->crud->addField([
+            'label' => 'Publier',
             'name' => 'published',
-            'label' => 'Publish?',
             'type' => 'checkbox'
         ]);
     }

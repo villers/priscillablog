@@ -25,7 +25,6 @@ class CreatePostsTable extends Migration
             $table->integer('view_count')->default(0);
             $table->integer('favorite_count')->default(0);
             $table->boolean('published');
-            $table->bigInteger('exported_at')->nullable();
             $table->softDeletes();
             $table->nullableTimestamps();
         });
