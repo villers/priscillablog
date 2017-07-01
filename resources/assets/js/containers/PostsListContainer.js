@@ -16,13 +16,22 @@ class PostsListContainer extends React.PureComponent {
   }
 
   componentWillMount() {
-    const { fetch, page } = this.props;
+    const { fetch } = this.props;
+
+    const page = this.context.router.route.match.params.page || 1;
 
     fetch(page);
   }
 
   onClick() {
     console.log('clicked');
+  }
+
+  paginateClick(page) {
+    const { fetch, moveTo } = this.props;
+
+    moveTo(`/page/${page}`);
+    fetch(page);
   }
 
   renderPosts() {
@@ -57,13 +66,6 @@ class PostsListContainer extends React.PureComponent {
         }
       />
     ));
-  }
-
-  paginateClick(page) {
-    const { fetch, moveTo } = this.props;
-
-    moveTo(`/page/${page}`);
-    fetch(page);
   }
 
   renderPaginate() {
@@ -103,7 +105,6 @@ class PostsListContainer extends React.PureComponent {
 PostsListContainer.defaultProps = {
   error: null,
   posts: [],
-  page: '1',
 };
 
 PostsListContainer.propTypes = {
@@ -111,8 +112,11 @@ PostsListContainer.propTypes = {
   moveTo: PropTypes.func.isRequired,
   posts: PropTypes.shape({}).isRequired,
   loading: PropTypes.bool.isRequired,
-  page: PropTypes.string,
   error: PropTypes.bool,
+};
+
+PostsListContainer.contextTypes = {
+  router: PropTypes.object,
 };
 
 const mapStateToProps = state => ({

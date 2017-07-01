@@ -13,9 +13,14 @@ const { mix } = require('laravel-mix');
 
 mix
   .react('resources/assets/js/bootstrap.js', 'public/js')
-  .sass('resources/assets/scss/style.scss', 'public/css')
-  .sourceMaps();
+  .sass('resources/assets/scss/style.scss', 'public/css');
 
-if (mix.config.inProduction) {
+// Source maps when not in production.
+if (!mix.inProduction()) {
+  mix.sourceMaps();
+}
+
+// Hash and version files in production.
+if (mix.inProduction()) {
   mix.version();
 }

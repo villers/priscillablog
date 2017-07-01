@@ -8,7 +8,7 @@ import PostsListContainer from '../containers/PostsListContainer';
 import Navigation from '../components/Navigation';
 
 
-const PostsIndex = ({ match }) => (
+const PostsIndex = () => (
   <div>
     <Header />
     <StickyContainer>
@@ -26,16 +26,14 @@ const PostsIndex = ({ match }) => (
       </Sticky>
     </StickyContainer>
     <Divider hidden />
-    <PostsListContainer page={match.params.page} />
+    <PostsListContainer />
   </div>
 );
 
 PostsIndex.defaultProps = {
-  match: {},
 };
 
 PostsIndex.propTypes = {
-  match: PropTypes.shape({}),
 };
 
 export default PostsIndex;

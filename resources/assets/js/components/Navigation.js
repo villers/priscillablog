@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Container, Dropdown, Menu, Search } from 'semantic-ui-react';
-import { NavLink } from 'react-router-dom';
+import { Button, Container, Menu, Search } from 'semantic-ui-react';
 
 const color = 'pink';
 
@@ -21,8 +20,8 @@ export default class NavigationComponent extends React.PureComponent {
 
   render() {
     const { activeItem } = this.state;
-
     const { style } = this.props;
+
     return (
       <Menu
         size="tiny"
