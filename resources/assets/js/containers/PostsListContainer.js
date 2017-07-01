@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Card, Container, Grid, Icon } from 'semantic-ui-react';
+import { Card, Container, Dimmer, Grid, Icon, Loader, Message } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import { push } from 'react-router-redux';
 
@@ -80,17 +80,27 @@ class PostsListContainer extends React.PureComponent {
     );
   }
 
+  renderError() {
+    const { error } = this.props;
+
+    return (
+      <Message negative>
+        <Message.Header>Error</Message.Header>
+        <p>{error.message}</p>
+      </Message>
+    );
+  }
+
   render() {
     const { loading, error } = this.props;
 
-    if (loading) {
-      return <div size="big" />;
-    } else if (error) {
-      return <div className="alert alert-danger">Error: {error.message}</div>;
-    }
-
     return (
       <Container>
+        <Dimmer active={loading}>
+          <Loader />
+        </Dimmer>
+
+        {error && this.renderError()}
 
         <Card.Group itemsPerRow={3}>
           {this.renderPosts()}
