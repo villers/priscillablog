@@ -1,3 +1,4 @@
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -28,7 +29,10 @@ class PostDetailContainer extends React.PureComponent {
         meta={
           post.created_at
         }
-        description={post.body}
+        description={<div
+          /* eslint-disable react/no-danger */
+          dangerouslySetInnerHTML={{ __html: post.body }}
+        />}
         as={'div'}
         link
         fluid
