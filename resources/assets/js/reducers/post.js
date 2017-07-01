@@ -1,3 +1,4 @@
+import { handleActions } from 'redux-actions';
 import { LOAD_POST, LOAD_POST_FAILURE, LOAD_POST_SUCCESS } from '../actions/post';
 
 const INIT_STATE = {
@@ -6,33 +7,24 @@ const INIT_STATE = {
   loading: false,
 };
 
-const posts = (state = INIT_STATE, action) => {
-  switch (action.type) {
-    case LOAD_POST:
-      return {
-        ...state,
-        post: INIT_STATE.post,
-        error: null,
-        loading: true,
-      };
-    case LOAD_POST_SUCCESS:
-      return {
-        ...state,
-        post: action.payload.data,
-        error: null,
-        loading: false,
-      };
-    case LOAD_POST_FAILURE: {
-      const error = action.payload || { message: action.payload.message };
-      return {
-        ...state,
-        error,
-        loading: false,
-      };
-    }
-    default:
-      return state;
-  }
-};
+const post = handleActions({
+  [LOAD_POST]: state => ({
+    ...state,
+    post: INIT_STATE.post,
+    error: null,
+    loading: true,
+  }),
+  [LOAD_POST_SUCCESS]: (state, action) => ({
+    ...state,
+    post: action.payload.data,
+    error: null,
+    loading: false,
+  }),
+  [LOAD_POST_FAILURE]: (state, action) => ({
+    ...state,
+    error: action.payload || { message: action.payload.message },
+    loading: false,
+  }),
+}, INIT_STATE);
 
-export default posts;
+export default post;
