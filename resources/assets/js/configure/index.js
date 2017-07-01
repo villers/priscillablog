@@ -1,2 +1,4 @@
-export configureClient from './client';
-export configureStore from './store';
+import configureClient from './client';
+import configureStore from './store';
+
+export { configureClient, configureStore };

@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Divider } from 'semantic-ui-react';
-import { StickyContainer, Sticky } from 'react-sticky';
+import { Sticky, StickyContainer } from 'react-sticky';
 
 import Header from '../components/Header';
 import PostsListContainer from '../containers/PostsListContainer';

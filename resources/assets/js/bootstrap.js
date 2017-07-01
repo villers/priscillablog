@@ -5,12 +5,11 @@ import ReactDOM from 'react-dom';
 import { createBrowserHistory } from 'history';
 import { ConnectedRouter } from 'connected-react-router';
 import { Provider } from 'react-redux';
-// import { whyDidYouUpdate } from 'why-did-you-update';
-
 import { configureClient, configureStore } from './configure';
 import reducer from './reducers';
 import routes from './routes';
 import AppProvider from './providers/AppProvider';
+// import { whyDidYouUpdate } from 'why-did-you-update';
 
 // if (process.env.NODE_ENV === 'development') {
 //   whyDidYouUpdate(React);
