@@ -1,14 +1,11 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
 
-import PostsListContainer from '../containers/PostsListContainer';
-import PostDetailContainer from '../containers/PostDetailContainer';
+import Layout from './Layout';
 
 const routes = (
   <Switch>
-    <Route exact path="/" component={PostsListContainer} />
-    <Route path="/blog/page/:page" component={PostsListContainer} />
-    <Route path="/blog/:slug" component={PostDetailContainer} />
+    <Route path="/" component={Layout} />
   </Switch>
 );
 

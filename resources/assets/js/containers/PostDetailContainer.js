@@ -1,12 +1,9 @@
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Card, Container, Dimmer, Grid, Icon, Loader, Message } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import { push } from 'react-router-redux';
-
-import Layout from '../components/Layout';
 import { loadPost } from '../actions/post';
 
 class PostDetailContainer extends React.PureComponent {
@@ -70,17 +67,15 @@ class PostDetailContainer extends React.PureComponent {
     const { loading, error } = this.props;
 
     return (
-      <Layout>
-        <Container>
-          <Dimmer active={loading}>
-            <Loader />
-          </Dimmer>
+      <Container>
+        <Dimmer active={loading}>
+          <Loader />
+        </Dimmer>
 
-          {error && this.renderError()}
+        {error && this.renderError()}
 
-          {this.renderPost()}
-        </Container>
-      </Layout>
+        {this.renderPost()}
+      </Container>
     );
   }
 }

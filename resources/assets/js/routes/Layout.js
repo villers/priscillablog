@@ -1,12 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Divider } from 'semantic-ui-react';
+import { Route, Switch } from 'react-router';
 import { Sticky, StickyContainer } from 'react-sticky';
 
 import Header from '../components/Header';
 import Navigation from '../components/Navigation';
+import PostsListContainer from '../containers/PostsListContainer';
+import NoMatchContainer from '../containers/NoMatchContainer';
+import PostDetailContainer from '../containers/PostDetailContainer';
 
-const Layout = ({ children }) => (
+const Layout = () => (
   <div>
     <Header />
     <StickyContainer>
@@ -24,7 +27,12 @@ const Layout = ({ children }) => (
       </Sticky>
     </StickyContainer>
     <Divider hidden />
-    {children}
+    <Switch>
+      <Route exact path="/" component={PostsListContainer} />
+      <Route path="/blog/page/:page" component={PostsListContainer} />
+      <Route path="/blog/:slug" component={PostDetailContainer} />
+      <Route component={NoMatchContainer} />
+    </Switch>
   </div>
 );
 
@@ -32,7 +40,6 @@ Layout.defaultProps = {
 };
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired,
 };
 
 export default Layout;

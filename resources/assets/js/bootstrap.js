@@ -23,7 +23,7 @@ ReactDOM.render(
   <AppContainer>
     <Provider store={store}>
       <AppProvider>
-        <ConnectedRouter history={history}>
+        <ConnectedRouter history={history} store={store}>
           { routes }
         </ConnectedRouter>
       </AppProvider>

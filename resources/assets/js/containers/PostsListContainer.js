@@ -7,7 +7,6 @@ import { push } from 'react-router-redux';
 
 import { loadPosts } from '../actions/posts';
 import Paginate from '../components/Paginate';
-import Layout from '../components/Layout';
 
 class PostsListContainer extends React.PureComponent {
   constructor(props) {
@@ -91,21 +90,19 @@ class PostsListContainer extends React.PureComponent {
     const { loading, error } = this.props;
 
     return (
-      <Layout>
-        <Container>
-          <Dimmer active={loading}>
-            <Loader />
-          </Dimmer>
+      <Container>
+        <Dimmer active={loading}>
+          <Loader />
+        </Dimmer>
 
-          {error && this.renderError()}
+        {error && this.renderError()}
 
-          <Card.Group itemsPerRow={3}>
-            {this.renderPosts()}
-          </Card.Group>
+        <Card.Group itemsPerRow={3}>
+          {this.renderPosts()}
+        </Card.Group>
 
-          {this.renderPaginate()}
-        </Container>
-      </Layout>
+        {this.renderPaginate()}
+      </Container>
     );
   }
 }
