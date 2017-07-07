@@ -30,7 +30,7 @@ $factory->define(App\Models\Post::class, function (Faker\Generator $faker) {
     return [
         'title' => $faker->sentence(),
         'slug' => $faker->slug,
-        'summary' => $faker->sentence(20),
+        'summary' => $faker->sentence(5),
         'body' => "<p>$body</p>",
         'image' => $faker->imageUrl(),
         'comment_count' => 2,
