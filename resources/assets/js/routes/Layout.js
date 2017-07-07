@@ -1,6 +1,6 @@
 import React from 'react';
 import { Divider } from 'semantic-ui-react';
-import { Route, Switch } from 'react-router';
+import { Route, Switch } from 'react-router-dom';
 import { Sticky, StickyContainer } from 'react-sticky';
 
 import Header from '../components/Header';

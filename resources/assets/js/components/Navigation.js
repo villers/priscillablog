@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 
-import { Button, Container, Menu, Search } from 'semantic-ui-react';
+import { Button, Container, Dropdown, Menu, Search } from 'semantic-ui-react';
 
 const color = 'pink';
 
@@ -17,15 +17,36 @@ export class NavigationComponent extends React.PureComponent {
     };
   }
 
-  handleItemClick(item, url) {
+  handleItemClick(name, url) {
     const { moveTo } = this.props;
-    this.setState({ activeItem: item.name });
+
+    console.log(name, url)
     moveTo(url);
   }
 
   render() {
     const { activeItem } = this.state;
     const { style } = this.props;
+
+    const menu = {
+      generalite: [
+        { key: 1, text: 'Introduction', value: 1 },
+        { key: 2, text: 'Présentation de l\'octodon', value: 2 },
+        { key: 3, text: 'Devenir propriétaire', value: 3 },
+        { key: 4, text: 'L\'alimentation', value: 4 },
+        { key: 5, text: 'Carnet de santé', value: 5 },
+        { key: 6, text: 'Transporter un octodon', value: 6 },
+        { key: 7, text: 'Laisser son animal chez sois', value: 7 },
+        { key: 8, text: 'Faire garder son animal', value: 8 },
+      ],
+      pimmy: [
+        { key: 1, text: 'Introduction', value: 1 },
+        { key: 2, text: 'Carte d\'identité', value: 2 },
+        { key: 3, text: 'Test alimentaire', value: 3 },
+        { key: 4, text: 'Test objests', value: 4 },
+        { key: 5, text: 'Journal intime', value: 5 },
+      ],
+    };
 
     return (
       <Menu
@@ -39,8 +60,9 @@ export class NavigationComponent extends React.PureComponent {
         style={style}
       >
         <Container>
-          <Menu.Item name="accueil" content="Accueil" active={activeItem === 'accueil'} onClick={(e, name) => this.handleItemClick(name, '/')} />
-          <Menu.Item name="generalite" content="Généralité" active={activeItem === 'generalite'} onClick={(e, name) => this.handleItemClick(name, '/')} />
+          <Menu.Item name="accueil" content="Accueil" onClick={(e, name) => this.handleItemClick(name, '/')} />
+          <Dropdown name="generalite" text="Généralité" item simple options={menu.generalite} onClick={(e, name) => this.handleItemClick(name, '/')} />
+          <Dropdown name="pimmy" text="Pimmy" item simple options={menu.pimmy} onClick={(e, name) => this.handleItemClick(name, '/')} />
 
           <Menu.Menu position="right">
             <Menu.Item>
