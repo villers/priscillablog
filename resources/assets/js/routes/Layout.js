@@ -19,7 +19,6 @@ const Layout = () => (
             position: 'fixed',
             top: 0,
             left: 0,
-            overflowY: 'auto',
             zIndex: 9999,
           } : {};
           return <Navigation style={style} />;
