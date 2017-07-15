@@ -38,7 +38,7 @@ class PostRepository
         $post = Post::where($column, $value)
             ->where('published', true)
             ->show()
-            ->with(['tags', 'category'])
+            ->with(['tags', 'category', 'comments'])
             ->first();
 
         if ($post) {
